@@ -1,50 +1,33 @@
-* {
+
+*{
   margin: 0;
   padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
 }
 
-.head {
-  font-family: 'Play', sans-serif;
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 12px 10px;
-  margin-bottom: 1px;
-  color: #fff;
+#particles-js {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  /* background: url("../img/83516.jpg") top center; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 
-.head h1 {
-  line-height: 22px;
-  font-weight: 300;
-  font-size: 18px;
-  margin: 0;
-}
-
-@keyframes move-twink-back {
-  from {background-position: 0 0;}
-  to {background-position: -10000px 5000px;}
-}
-
-.stars, .twinkle {
+canvas.particles-js-canvas-el {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
-  display: block;
-  z-index: -10;
 }
 
-.stars {
-  background: #000 url(http://sylvaingarnot.fr/media/stars.png) repeat top center;
-  z-index: -1;
+.home{
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
-.twinkle {
-  background: transparent url(http://sylvaingarnot.fr/media/twinkling.png) repeat top center;
-  z-index: -1;
-  animation: move-twink-back 100s linear infinite;
-}

@@ -14,7 +14,7 @@ particlesJS("particles-js", {
           "color": "#fff"
         },
         "polygon": {
-          "nb_sides": 7
+          "nb_sides": 10
         },
         "image": {
           "src": "img/github.svg",
