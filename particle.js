@@ -10,7 +10,7 @@ particlesJS("particles-js", {
     "shape": {
       "type": "circle",
       "stroke": {
-        "width": 2,
+        "width": 1,
         "color": "#fff"
       },
       "polygon": {
@@ -49,12 +49,12 @@ particlesJS("particles-js", {
       "enable": true,
       "distance": 250,
       "color": "#944343",
-      "opacity": 0.4,
+      "opacity": 1,
       "width": 1
     },
     "move": {
       "enable": true,
-      "speed": 6,
+      "speed": 10,
       "direction": "none",
       "random": true,
       "straight": false,
