@@ -295,6 +295,11 @@ h6 {
     line-height: 24px;
     margin-bottom: 30px;
   }
+
+  .about .content ul li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -355,6 +360,7 @@ section {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .about .content ul strong {
