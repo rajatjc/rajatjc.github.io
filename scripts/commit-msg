@@ -1,0 +1,8 @@
+#!/bin/sh
+# Strip Made-with: Cursor trailer (and similar) from commit message.
+# Cursor sometimes adds it automatically; this hook removes it.
+msg_file="$1"
+[ -f "$msg_file" ] || exit 0
+sed -i '/^[[:space:]]*Made-with:[[:space:]]*Cursor[[:space:]]*$/d' "$msg_file"
+sed -i '/^[[:space:]]*Made with Cursor[[:space:]]*$/d' "$msg_file"
+exit 0
