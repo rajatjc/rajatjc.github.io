@@ -28,10 +28,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Prepare deployment (repo root without .git/.github)
+        run: |
+          mkdir -p deploy
+          rsync -a --exclude='.git' --exclude='.github' --exclude='deploy' . deploy/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: deploy
 
       - name: Deploy to GitHub Pages
         id: deployment
