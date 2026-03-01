@@ -18,5 +18,5 @@ Personal portfolio and resume, hosted on GitHub Pages.
 
 ## GitHub Pages
 
-- **Source:** GitHub Actions (`.github/workflows/deploy-pages.yml`) — deploys on every push to `main`.
-- In **Settings → Pages**, set **Source** to **GitHub Actions**.
+- **Source must be GitHub Actions** (`.github/workflows/deploy-pages.yml`) so the site is deployed at the root. If you see unstyled text (“RS”, “AboutSkillsExperience…”), **Settings → Pages → Build and deployment → Source** must be **GitHub Actions**, not “Deploy from a branch”.
+- After changing the source or pushing, wait for the workflow to finish under the **Actions** tab, then hard-refresh the site (Ctrl+Shift+R) or try in an incognito window.

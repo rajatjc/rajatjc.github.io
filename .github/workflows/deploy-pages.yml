@@ -28,12 +28,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Prepare deployment (site at root + old-portfolio)
+      - name: Prepare deployment (root = site; exclude .git, .github, site folder)
         run: |
           mkdir -p deploy
-          cp -r site/* deploy/ 2>/dev/null || true
-          cp site/.nojekyll deploy/ 2>/dev/null || true
-          cp -r old-portfolio deploy/
+          rsync -a --exclude='.git' --exclude='.github' --exclude='site' . deploy/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
