@@ -6,15 +6,29 @@ Personal portfolio and resume, hosted on GitHub Pages.
 
 | Folder / file   | Purpose |
 |-----------------|--------|
-| **Root**        | Built Next.js portfolio (index.html, _next/, resume.pdf, .nojekyll, etc.). Deployed to the root of https://rajatjc.github.io. |
+| **`site/`**     | Source of the portfolio (Next.js, static export). Not deployed itself. |
+| **Root**        | Built portfolio (index.html, _next/, resume.pdf, og.png, etc.), generated from `site/`. Deployed to the root of https://rajatjc.github.io. |
 | **`old-portfolio/`** | Backup of the previous HTML/CSS/JS site. Available at https://rajatjc.github.io/old-portfolio/. |
 | **`README.md`** | This file. |
 
+## Editing the site
+
+- All text (experience, projects, skills, links) is in `site/app/data.ts`. Keep it in sync with the résumé.
+- Interactive pieces live in `site/app/components/`: the cursor, the hero terminal, the lsm-kv playground and the Loonie Ledger simulator.
+- Replace the résumé at `site/public/resume.pdf`.
+- `site/tools/og.html` is the source of the link-preview image (`og.png`); the command to regenerate it is at the top of that file.
+
 ## Updating the live site
 
-1. Build your Next.js portfolio locally: `npm run build`
-2. Copy the contents of `out/` into this repo’s **root** (replace existing index.html, _next/, etc.).
-3. Commit and push to `main`. GitHub Actions will deploy the root files and `old-portfolio/` to GitHub Pages.
+```sh
+cd site
+npm install            # first time only
+npm run dev            # preview at http://localhost:3000
+npm run publish-site   # build, then copy site/out/ to the repo root
+```
+
+Then commit and push to `main`. GitHub Actions deploys the root files and `old-portfolio/` to GitHub Pages.
+`publish-site` only replaces files it published last time (listed in `site/.published.json`), so nothing else at the root is touched.
 
 ## GitHub Pages
 

@@ -1,0 +1,40 @@
+<!doctype html>
+<!-- Source for public/og.png (the link-preview image). Regenerate with:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
+       --window-size=1200,630 --screenshot=public/og.png tools/og.html -->
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #0a0a0b; color: #ededee; font-family: "Space Grotesk", sans-serif; position: relative;
+    background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px); background-size: 26px 26px;
+  }
+  .glow { position: absolute; width: 900px; height: 900px; right: -300px; top: -380px; background: radial-gradient(circle, rgba(200,245,96,.22), transparent 60%); }
+  .inner { position: absolute; left: 80px; top: 92px; right: 80px; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .eyebrow { color: #c8f560; font-size: 26px; margin-bottom: 26px; }
+  h1 { font-size: 132px; line-height: .92; letter-spacing: -6px; margin: 0 0 34px; }
+  p { font-size: 34px; color: #9d9da5; margin: 0; letter-spacing: -.5px; }
+  .chips { position: absolute; left: 80px; bottom: 70px; display: flex; gap: 12px; }
+  .chip { font-size: 21px; padding: 8px 18px; border: 1px solid #34343a; border-radius: 999px; color: #c9c9cf; background: #111113; }
+  .url { position: absolute; right: 80px; bottom: 78px; font-size: 22px; color: #6b6b73; }
+  .ring { position: absolute; right: 150px; top: 150px; width: 150px; height: 150px; border-radius: 50%; background: #fff; mix-blend-mode: difference; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="ring"></div>
+  <div class="inner">
+    <div class="eyebrow mono">&gt; backend &amp; platform engineer</div>
+    <h1>Rajat Sharma</h1>
+    <p>Distributed systems at IBM. Storage engines for fun.</p>
+  </div>
+  <div class="chips mono">
+    <span class="chip">Java</span><span class="chip">Go</span><span class="chip">Kafka</span><span class="chip">Cassandra</span><span class="chip">Kubernetes</span>
+  </div>
+  <div class="url mono">rajatjc.github.io</div>
+</body>
+</html>
