@@ -2,6 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
+// Directions of the droplet's corners, in border-radius order: top-left, top-right, bottom-right, bottom-left.
+const CORNERS = [[-1, -1], [1, -1], [1, 1], [-1, 1]] as const;
+
 // A glass water droplet: the page shows through it with a highlight and soft shading. It trails
 // the pointer on a spring, stretches into a teardrop in the direction it moves, and wobbles back
 // into a bead when it stops. A small dot tracks the pointer exactly, so clicking stays precise.
@@ -70,10 +73,15 @@ export default function Cursor() {
       }
       last = now;
       b.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
-      bl.style.transform = `rotate(${angle}rad) scale(${1 + stretch}, ${Math.max(0.55, 1 - stretch * 0.6)})`;
-      // A tighter curve on the trailing side turns the stretched bead into a teardrop.
-      const tail = 50 - Math.max(0, stretch) * 31;
-      d.style.borderRadius = `${tail}% 50% 50% ${tail}%`;
+      // Rotate, stretch, rotate back: the droplet stretches along its direction of travel
+      // but never turns, so the highlight stays at the top left like real light on water.
+      bl.style.transform = `rotate(${angle}rad) scale(${1 + stretch}, ${Math.max(0.55, 1 - stretch * 0.6)}) rotate(${-angle}rad)`;
+      // Tighter curves on the corners facing away from the motion turn it into a teardrop.
+      const ux = Math.cos(angle), uy = Math.sin(angle), pull = Math.max(0, stretch) * 44;
+      d.style.borderRadius = CORNERS.map(([cx, cy]) => {
+        const behind = Math.max(0, -(ux * cx + uy * cy) / Math.SQRT2);
+        return `${(50 - pull * behind).toFixed(1)}%`;
+      }).join(" ");
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
