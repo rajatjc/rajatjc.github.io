@@ -8,10 +8,13 @@ export const profile = {
   url: "https://rajatjc.github.io",
   status: "Open to backend and platform roles",
   tagline:
-    "I build the systems behind the screen: multi-tenant SaaS on Kubernetes at IBM, event-driven services on Kafka and Cassandra, and, in my spare time, databases from scratch.",
+    "I build the systems behind the screen: multi-tenant SaaS on Kubernetes at IBM, and event-driven services on Kafka and Cassandra.",
   description:
     "Backend and platform engineer at IBM in Toronto. Java, Go, Spring Boot, Kafka, Cassandra and Kubernetes. Builder of lsm-kv, an LSM-tree storage engine in Java.",
 };
+
+// Versioned by next.config.ts so a new résumé is never served from cache.
+export const resumeUrl = process.env.NEXT_PUBLIC_RESUME_URL ?? "/resume.pdf";
 
 export const socials = [
   { label: "GitHub", href: "https://github.com/rajatjc", handle: "rajatjc" },

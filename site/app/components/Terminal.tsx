@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { featured, jobs, moreProjects, profile, skills, socials } from "../data";
+import { featured, jobs, moreProjects, profile, resumeUrl, skills, socials } from "../data";
 
 type Line = { kind: "cmd" | "out" | "accent" | "err"; text: string; href?: string };
 
@@ -69,8 +69,8 @@ function run(input: string): Line[] | "clear" {
         { kind: "accent", text: profile.status + "." },
       ];
     case "resume":
-      window.open("/resume.pdf", "_blank", "noopener");
-      return [link("Opening résumé (PDF)…", "/resume.pdf")];
+      window.open(resumeUrl, "_blank", "noopener");
+      return [link("Opening résumé (PDF)…", resumeUrl)];
     case "github":
     case "linkedin": {
       const s = socials.find((x) => x.label.toLowerCase() === cmd.toLowerCase())!;

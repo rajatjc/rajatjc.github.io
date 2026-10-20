@@ -15,6 +15,7 @@ import {
   moreProjects,
   now,
   profile,
+  resumeUrl,
   skills,
   socials,
   stats,
@@ -95,17 +96,16 @@ export default function Home() {
                 <br />
                 Sharma
               </h1>
-              <Typer phrases={["backend & platform engineer", "software developer @ IBM", "builds storage engines for fun", "Java · Go · Kafka · Kubernetes"]} />
+              <Typer phrases={["backend & platform engineer", "software developer @ IBM", "Java · Go · Kafka · Kubernetes"]} />
               <p className="tagline">
-                I build the systems behind the screen: <strong>multi-tenant SaaS on Kubernetes</strong> at IBM,{" "}
-                <strong>event-driven services</strong> on Kafka and Cassandra, and, in my spare time,{" "}
-                <strong>databases from scratch</strong>.
+                I build the systems behind the screen: <strong>multi-tenant SaaS on Kubernetes</strong> at IBM, and{" "}
+                <strong>event-driven services</strong> on Kafka and Cassandra.
               </p>
               <div className="hero-ctas">
                 <a className="btn btn-primary" href="#projects">
                   See my work <span aria-hidden="true">↓</span>
                 </a>
-                <a className="btn" href="/resume.pdf" target="_blank" rel="noopener">
+                <a className="btn" href={resumeUrl} target="_blank" rel="noopener">
                   Résumé (PDF) <span className="arrow">↗</span>
                 </a>
               </div>

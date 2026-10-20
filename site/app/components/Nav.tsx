@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { resumeUrl } from "../data";
 
 const links = [
   { id: "about", label: "About" },
@@ -52,7 +53,7 @@ export default function Nav() {
           ))}
         </ul>
         <div className="nav-right">
-          <a href="/resume.pdf" className="btn btn-sm" target="_blank" rel="noopener">
+          <a href={resumeUrl} className="btn btn-sm" target="_blank" rel="noopener">
             Résumé
           </a>
           <button className="menu-btn" aria-expanded={open} aria-controls="nav-links" onClick={() => setOpen((o) => !o)}>
