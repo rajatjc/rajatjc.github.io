@@ -46,34 +46,31 @@ button, input { font: inherit; color: inherit; }
 /* ---------- Cursor: a glass water droplet that trails the pointer, plus an exact pointer dot ---------- */
 html.has-cursor, html.has-cursor * { cursor: none !important; }
 html.has-cursor input[type="text"], html.has-cursor input:not([type]) { cursor: text !important; }
-.cursor {
+/* Both are fixed, direct children of the page and moved by JS (position, stretch and size).
+   Keep the droplet un-nested: inside transformed or positioned wrappers, Chrome stops
+   blurring the page behind it. */
+.cursor-drop, .cursor-pointer {
   position: fixed; left: 0; top: 0; z-index: 9999;
   pointer-events: none;
   opacity: 0; transition: opacity .2s ease;
 }
-.cursor[data-visible="true"] { opacity: 1; }
-/* The droplet and the exact pointer dot are moved by JS; the blob holds the stretch and wobble. */
-.cursor-bubble, .cursor-pointer { position: absolute; left: 0; top: 0; will-change: transform; }
-.cursor-blob { will-change: transform; }
+.cursor-drop[data-visible="true"], .cursor-pointer[data-visible="true"] { opacity: 1; }
 /* The pointer dot inverts what's under it, so it stays visible on any background. */
-.cursor-pointer { width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: #fff; mix-blend-mode: difference; }
-.cursor-dot {
+.cursor-pointer {
+  z-index: 10000; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%;
+  background: #fff; mix-blend-mode: difference; will-change: transform;
+}
+.cursor-drop {
   width: 44px; height: 44px; border-radius: 50%;
   /* The page shows through hazy and a little brighter, like looking through a misted water drop. */
   /* Write only the standard property: the build adds -webkit- for Safari. Writing both made it drop this one. */
-  backdrop-filter: blur(5px) saturate(1.35) brightness(1.15);
+  backdrop-filter: blur(8px) saturate(1.35) brightness(1.15);
   background:
     radial-gradient(circle at 32% 26%, #ffffffee 0 7%, #ffffff40 13%, #ffffff00 30%),
     radial-gradient(circle at 70% 80%, #ffffff38 0, #ffffff00 42%),
     radial-gradient(circle at 50% 50%, #ffffff00 58%, #ffffff22 72%, #ffffff00 100%);
   box-shadow: inset 0 -7px 12px #ffffff26, inset 0 8px 12px #00000059, 0 8px 18px #0000008c, 0 0 0 1px #ffffff2e;
-  transform: translate(-50%, -50%) scale(1);
-  transition: transform .28s cubic-bezier(.2, .8, .2, 1);
 }
-.cursor[data-state="hover"] .cursor-dot { transform: translate(-50%, -50%) scale(1.9); }
-.cursor[data-state="text"] .cursor-dot { transform: translate(-50%, -50%) scale(.45); }
-.cursor[data-down="true"] .cursor-dot { transform: translate(-50%, -50%) scale(.85); }
-.cursor[data-state="hover"][data-down="true"] .cursor-dot { transform: translate(-50%, -50%) scale(1.7); }
 
 /* ---------- Reveal on scroll (only hides when JS is running) ---------- */
 .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .8, .2, 1); }
