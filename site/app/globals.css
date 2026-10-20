@@ -59,9 +59,9 @@ html.has-cursor input[type="text"], html.has-cursor input:not([type]) { cursor: 
 .cursor-pointer { width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: #fff; mix-blend-mode: difference; }
 .cursor-dot {
   width: 44px; height: 44px; border-radius: 50%;
-  /* The page shows through, a little brighter and more saturated, like looking through water. */
+  /* The page shows through hazy and a little brighter, like looking through a misted water drop. */
   /* Write only the standard property: the build adds -webkit- for Safari. Writing both made it drop this one. */
-  backdrop-filter: blur(1.2px) saturate(1.7) brightness(1.18) contrast(1.08);
+  backdrop-filter: blur(5px) saturate(1.35) brightness(1.15);
   background:
     radial-gradient(circle at 32% 26%, #ffffffee 0 7%, #ffffff40 13%, #ffffff00 30%),
     radial-gradient(circle at 70% 80%, #ffffff38 0, #ffffff00 42%),

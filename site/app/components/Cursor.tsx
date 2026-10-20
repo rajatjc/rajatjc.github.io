@@ -49,16 +49,17 @@ export default function Cursor() {
 
     // One physics step at 60 fps; faster displays run it more often, so the feel doesn't change.
     const step = () => {
-      // The droplet chases the pointer on a soft spring, so it lags and overshoots a little.
-      vx = (vx + (x - cx) * 0.07) * 0.8;
-      vy = (vy + (y - cy) * 0.07) * 0.8;
+      // The droplet drifts after the pointer on a soft spring, so it lags and overshoots a little.
+      // Lower pull = slower; higher friction keeps the slow version from swinging too far.
+      vx = (vx + (x - cx) * 0.012) * 0.88;
+      vy = (vy + (y - cy) * 0.012) * 0.88;
       cx += vx;
       cy += vy;
       // Faster movement stretches it more. The stretch has its own bouncy spring,
       // so when the droplet stops it overshoots into a squash and wobbles back to round.
       const speed = Math.hypot(vx, vy);
       if (speed > 0.6) angle = Math.atan2(vy, vx);
-      stretchV = (stretchV + (Math.min(speed * 0.022, 0.5) - stretch) * 0.16) * 0.8;
+      stretchV = (stretchV + (Math.min(speed * 0.05, 0.5) - stretch) * 0.16) * 0.8;
       stretch += stretchV;
     };
 
