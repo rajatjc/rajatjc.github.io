@@ -2,26 +2,36 @@
 
 import { useEffect, useRef } from "react";
 
-// A white circle drawn with mix-blend-mode: difference, so whatever it covers shows in negative.
+// A white bubble drawn with mix-blend-mode: difference, so whatever it covers shows in negative.
+// It trails the pointer on a spring, stretches in the direction it moves, and wobbles back into
+// a circle when it stops. A small dot tracks the pointer exactly, so clicking stays precise.
 // It grows over links and buttons, shrinks over text fields, and only appears for mouse/trackpad users.
 export default function Cursor() {
-  const ref = useRef<HTMLDivElement>(null);
+  const root = useRef<HTMLDivElement>(null);
+  const bubble = useRef<HTMLDivElement>(null);
+  const blob = useRef<HTMLDivElement>(null);
+  const pointer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const el = root.current, b = bubble.current, bl = blob.current, p = pointer.current;
+    if (!el || !b || !bl || !p || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     document.documentElement.classList.add("has-cursor");
 
-    let x = -100, y = -100, cx = x, cy = y, raf = 0;
+    // Pointer (x, y); bubble position (cx, cy) and velocity (vx, vy);
+    // stretch amount and its velocity; stretch direction in radians.
+    let x = -100, y = -100, cx = x, cy = y, vx = 0, vy = 0;
+    let stretch = 0, stretchV = 0, angle = 0, raf = 0, last = performance.now();
 
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;
       x = e.clientX;
       y = e.clientY;
+      p.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       if (el.dataset.visible !== "true") {
         cx = x;
         cy = y;
+        vx = vy = 0;
         el.dataset.visible = "true";
       }
       const t = e.target as Element | null;
@@ -33,11 +43,33 @@ export default function Cursor() {
     const onUp = () => (el.dataset.down = "false");
     const onLeave = () => (el.dataset.visible = "false");
 
-    const tick = () => {
-      const k = reduceMotion ? 1 : 0.22;
-      cx += (x - cx) * k;
-      cy += (y - cy) * k;
-      el.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+    // One physics step at 60 fps; faster displays run it more often, so the feel doesn't change.
+    const step = () => {
+      // The bubble chases the pointer on a soft spring, so it lags and overshoots a little.
+      vx = (vx + (x - cx) * 0.075) * 0.78;
+      vy = (vy + (y - cy) * 0.075) * 0.78;
+      cx += vx;
+      cy += vy;
+      // Faster movement stretches it more. The stretch has its own bouncy spring,
+      // so when the bubble stops it overshoots into a squash and wobbles back to round.
+      const speed = Math.hypot(vx, vy);
+      if (speed > 0.6) angle = Math.atan2(vy, vx);
+      stretchV = (stretchV + (Math.min(speed * 0.02, 0.45) - stretch) * 0.16) * 0.8;
+      stretch += stretchV;
+    };
+
+    const tick = (now: number) => {
+      if (reduceMotion) {
+        cx = x;
+        cy = y;
+        stretch = 0;
+      } else {
+        const steps = Math.min(4, Math.max(1, Math.round((now - last) / 16.7)));
+        for (let i = 0; i < steps; i++) step();
+      }
+      last = now;
+      b.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+      bl.style.transform = `rotate(${angle}rad) scale(${1 + stretch}, ${Math.max(0.55, 1 - stretch * 0.7)})`;
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -57,8 +89,13 @@ export default function Cursor() {
   }, []);
 
   return (
-    <div ref={ref} className="cursor" aria-hidden="true">
-      <div className="cursor-dot" />
+    <div ref={root} className="cursor" aria-hidden="true">
+      <div ref={bubble} className="cursor-bubble">
+        <div ref={blob} className="cursor-blob">
+          <div className="cursor-dot" />
+        </div>
+      </div>
+      <div ref={pointer} className="cursor-pointer" />
     </div>
   );
 }

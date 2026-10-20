@@ -42,7 +42,7 @@ function run(input: string): Line[] | "clear" {
       return [
         { kind: "accent", text: `${profile.name}: ${profile.role.toLowerCase()} at IBM, ${profile.location}.` },
         out("Java · Go · Spring Boot · Kafka · Cassandra · Kubernetes"),
-        out("I build multi-tenant SaaS by day and storage engines by night."),
+        out("I build multi-tenant SaaS on Kubernetes and event-driven services on Kafka."),
         out("Try: projects, experience, contact"),
       ];
     case "projects":

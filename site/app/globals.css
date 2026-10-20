@@ -50,9 +50,12 @@ html.has-cursor input[type="text"], html.has-cursor input:not([type]) { cursor: 
   position: fixed; left: 0; top: 0; z-index: 9999;
   pointer-events: none; mix-blend-mode: difference;
   opacity: 0; transition: opacity .2s ease;
-  will-change: transform;
 }
 .cursor[data-visible="true"] { opacity: 1; }
+/* The bubble and the exact pointer dot are moved by JS; the blob holds the stretch and wobble. */
+.cursor-bubble, .cursor-pointer { position: absolute; left: 0; top: 0; will-change: transform; }
+.cursor-blob { will-change: transform; }
+.cursor-pointer { width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: #fff; }
 .cursor-dot {
   width: 30px; height: 30px; border-radius: 50%; background: #fff;
   transform: translate(-50%, -50%) scale(1);
