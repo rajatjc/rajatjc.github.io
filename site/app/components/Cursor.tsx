@@ -2,23 +2,24 @@
 
 import { useEffect, useRef } from "react";
 
-// A white bubble drawn with mix-blend-mode: difference, so whatever it covers shows in negative.
-// It trails the pointer on a spring, stretches in the direction it moves, and wobbles back into
-// a circle when it stops. A small dot tracks the pointer exactly, so clicking stays precise.
+// A glass water droplet: the page shows through it with a highlight and soft shading. It trails
+// the pointer on a spring, stretches into a teardrop in the direction it moves, and wobbles back
+// into a bead when it stops. A small dot tracks the pointer exactly, so clicking stays precise.
 // It grows over links and buttons, shrinks over text fields, and only appears for mouse/trackpad users.
 export default function Cursor() {
   const root = useRef<HTMLDivElement>(null);
   const bubble = useRef<HTMLDivElement>(null);
   const blob = useRef<HTMLDivElement>(null);
+  const drop = useRef<HTMLDivElement>(null);
   const pointer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = root.current, b = bubble.current, bl = blob.current, p = pointer.current;
-    if (!el || !b || !bl || !p || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const el = root.current, b = bubble.current, bl = blob.current, d = drop.current, p = pointer.current;
+    if (!el || !b || !bl || !d || !p || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     document.documentElement.classList.add("has-cursor");
 
-    // Pointer (x, y); bubble position (cx, cy) and velocity (vx, vy);
+    // Pointer (x, y); droplet position (cx, cy) and velocity (vx, vy);
     // stretch amount and its velocity; stretch direction in radians.
     let x = -100, y = -100, cx = x, cy = y, vx = 0, vy = 0;
     let stretch = 0, stretchV = 0, angle = 0, raf = 0, last = performance.now();
@@ -45,16 +46,16 @@ export default function Cursor() {
 
     // One physics step at 60 fps; faster displays run it more often, so the feel doesn't change.
     const step = () => {
-      // The bubble chases the pointer on a soft spring, so it lags and overshoots a little.
-      vx = (vx + (x - cx) * 0.075) * 0.78;
-      vy = (vy + (y - cy) * 0.075) * 0.78;
+      // The droplet chases the pointer on a soft spring, so it lags and overshoots a little.
+      vx = (vx + (x - cx) * 0.07) * 0.8;
+      vy = (vy + (y - cy) * 0.07) * 0.8;
       cx += vx;
       cy += vy;
       // Faster movement stretches it more. The stretch has its own bouncy spring,
-      // so when the bubble stops it overshoots into a squash and wobbles back to round.
+      // so when the droplet stops it overshoots into a squash and wobbles back to round.
       const speed = Math.hypot(vx, vy);
       if (speed > 0.6) angle = Math.atan2(vy, vx);
-      stretchV = (stretchV + (Math.min(speed * 0.02, 0.45) - stretch) * 0.16) * 0.8;
+      stretchV = (stretchV + (Math.min(speed * 0.022, 0.5) - stretch) * 0.16) * 0.8;
       stretch += stretchV;
     };
 
@@ -69,7 +70,10 @@ export default function Cursor() {
       }
       last = now;
       b.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
-      bl.style.transform = `rotate(${angle}rad) scale(${1 + stretch}, ${Math.max(0.55, 1 - stretch * 0.7)})`;
+      bl.style.transform = `rotate(${angle}rad) scale(${1 + stretch}, ${Math.max(0.55, 1 - stretch * 0.6)})`;
+      // A tighter curve on the trailing side turns the stretched bead into a teardrop.
+      const tail = 50 - Math.max(0, stretch) * 31;
+      d.style.borderRadius = `${tail}% 50% 50% ${tail}%`;
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -92,7 +96,7 @@ export default function Cursor() {
     <div ref={root} className="cursor" aria-hidden="true">
       <div ref={bubble} className="cursor-bubble">
         <div ref={blob} className="cursor-blob">
-          <div className="cursor-dot" />
+          <div ref={drop} className="cursor-dot" />
         </div>
       </div>
       <div ref={pointer} className="cursor-pointer" />
