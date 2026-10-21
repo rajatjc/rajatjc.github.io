@@ -287,6 +287,19 @@ section { scroll-margin-top: 72px; }
 .log { font-family: var(--font-mono); font-size: 12px; color: var(--muted); border-top: 1px dashed var(--line-2); padding-top: 10px; margin-top: 6px; min-height: 40px; }
 .log .ok { color: var(--ok); } .log .warn { color: var(--warn); } .log .bad { color: var(--bad); } .log .info { color: var(--info); }
 
+/* Screenshot strip: phone-shaped shots, the middle one dropped a little */
+.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
+.shots a { display: grid; gap: 8px; min-width: 0; }
+.shots a:nth-child(2) { margin-top: 28px; }
+.shots img {
+  width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line-2);
+  transition: transform .3s, border-color .3s;
+}
+.shots a:hover img { transform: translateY(-4px); border-color: var(--accent); }
+.shots span { font-family: var(--font-mono); font-size: 12px; color: var(--faint); text-align: center; }
+@media (max-width: 520px) { .shots { gap: 8px; } .shots a:nth-child(2) { margin-top: 16px; } }
+@media (prefers-reduced-motion: reduce) { .shots img { transition: none; } }
+
 /* Ledger flow */
 .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 6px 0 14px; }
 @media (max-width: 520px) { .flow { grid-template-columns: 1fr 1fr; } }

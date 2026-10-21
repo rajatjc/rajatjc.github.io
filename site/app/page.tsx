@@ -5,6 +5,7 @@ import ExperienceTabs from "./components/ExperienceTabs";
 import LedgerFlow from "./components/LedgerFlow";
 import LsmPlayground from "./components/LsmPlayground";
 import Nav from "./components/Nav";
+import Shots from "./components/Shots";
 import Terminal from "./components/Terminal";
 import Typer from "./components/Typer";
 import {
@@ -29,12 +30,14 @@ function ProjectLinks({ p }: { p: Project }) {
     <div className="links">
       {p.demo && (
         <a className="btn btn-primary btn-sm" href={p.demo} target="_blank" rel="noopener">
-          Live demo <span className="arrow">↗</span>
+          {p.demoLabel ?? "Live demo"} <span className="arrow">↗</span>
         </a>
       )}
-      <a className="btn btn-sm" href={p.repo} target="_blank" rel="noopener">
-        Code on GitHub <span className="arrow">↗</span>
-      </a>
+      {p.repo && (
+        <a className="btn btn-sm" href={p.repo} target="_blank" rel="noopener">
+          Code on GitHub <span className="arrow">↗</span>
+        </a>
+      )}
       {p.demoNote && <span className="note">{p.demoNote}</span>}
     </div>
   );
@@ -73,7 +76,7 @@ function Feature({ p, children }: { p: Project; children: React.ReactNode }) {
 }
 
 export default function Home() {
-  const [lsm, ledger] = featured;
+  const [lsm, ledger, peeler] = featured;
 
   return (
     <>
@@ -177,12 +180,15 @@ export default function Home() {
           <div className="wrap">
             <p className="eyebrow">02 · projects</p>
             <h2 className="h2 reveal">Things I&apos;ve built to understand them.</h2>
-            <p className="lede reveal">Two projects you can play with right here. Each demo is a small model of the real system, running in your browser.</p>
+            <p className="lede reveal">Two projects you can play with right here, plus a game that&apos;s live on its own domain. Each demo is a small model of the real system, running in your browser.</p>
             <Feature p={lsm}>
               <LsmPlayground />
             </Feature>
             <Feature p={ledger}>
               <LedgerFlow />
+            </Feature>
+            <Feature p={peeler}>
+              <Shots p={peeler} />
             </Feature>
 
             <h3 className="sub-h reveal">Earlier work</h3>

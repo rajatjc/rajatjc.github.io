@@ -53,8 +53,10 @@ function run(input: string): Line[] | "clear" {
     case "open": {
       const p = allProjects.find((x) => slug(x.name) === slug(arg) || slug(x.name).startsWith(slug(arg) || "\0"));
       if (!p) return [{ kind: "err", text: `open: no project named "${arg}". Try: projects` }];
-      window.open(p.repo, "_blank", "noopener");
-      return [link(`Opening ${p.repo}`, p.repo)];
+      // Private projects have no repo; open the live site instead.
+      const href = p.repo ?? p.demo ?? profile.url;
+      window.open(href, "_blank", "noopener");
+      return [link(`Opening ${href}`, href)];
     }
     case "experience":
     case "xp":

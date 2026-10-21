@@ -141,11 +141,14 @@ export type Project = {
   blurb: string;
   points?: string[];
   tech: string[];
-  repo: string;
+  repo?: string;
   demo?: string;
+  demoLabel?: string;
   demoNote?: string;
   badge?: string;
   metrics?: { value: string; label: string }[];
+  // Screenshots in public/, 400 × 760. href opens the game on that item.
+  shots?: { src: string; alt: string; caption: string; href: string }[];
 };
 
 export const featured: Project[] = [
@@ -179,6 +182,24 @@ export const featured: Project[] = [
     tech: ["Java 21", "Spring Boot", "Python", "FastAPI", "TypeScript", "Redis Streams", "PostgreSQL", "Kubernetes"],
     repo: "https://github.com/rajatjc/loonie-ledger",
     badge: "Publishing now",
+  },
+  {
+    name: "Happy Peeler",
+    blurb:
+      "A free browser game. A blade sweeps across the board, and you tap to shave strips off fruit, vegetables, gadgets and planets. Clear every bit of skin in five peels or fewer.",
+    points: [
+      "32 items in six categories, drawn on a 2D canvas with Path2D, at five motion levels from still to wild. No framework or game engine.",
+      "Each run is scored by counting the skin pixels left on the canvas, so the result matches exactly what the player sees.",
+      "Worldwide rankings on Cloudflare Pages Functions and D1. Finish times are stored only as counts per 100 ms bucket, so every run is ranked without keeping anything about the player.",
+    ],
+    tech: ["JavaScript", "Canvas 2D", "Web Audio", "Cloudflare Pages", "Cloudflare D1", "SQL"],
+    demo: "https://happypeeler.com",
+    demoLabel: "Play it",
+    shots: [
+      { src: "/projects/happy-peeler/avocado.jpg", alt: "An avocado half peeled, with the blade sweeping over it", caption: "Avocado", href: "https://happypeeler.com/#avocado" },
+      { src: "/projects/happy-peeler/phone.jpg", alt: "A phone with its screen protector being peeled off in strips", caption: "Phone", href: "https://happypeeler.com/#phone" },
+      { src: "/projects/happy-peeler/earth.jpg", alt: "Earth with the clouds peeled off its lower half", caption: "Earth", href: "https://happypeeler.com/#earth" },
+    ],
   },
 ];
 
