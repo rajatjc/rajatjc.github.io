@@ -188,7 +188,7 @@ export const featured: Project[] = [
     blurb:
       "A free browser game. A blade sweeps across the board, and you tap to shave strips off fruit, vegetables, gadgets and planets. Clear every bit of skin in five peels or fewer.",
     points: [
-      "32 items in six categories, drawn on a 2D canvas with Path2D, at five motion levels from still to wild. No framework or game engine.",
+      "Fruit, gadgets, stickers and planets, all drawn on a 2D canvas with Path2D, at five motion levels from still to wild. No framework or game engine.",
       "Each run is scored by counting the skin pixels left on the canvas, so the result matches exactly what the player sees.",
       "Worldwide rankings on Cloudflare Pages Functions and D1. Finish times are stored only as counts per 100 ms bucket, so every run is ranked without keeping anything about the player.",
     ],
@@ -209,13 +209,6 @@ export const moreProjects: Project[] = [
     blurb: "A shopping-cart REST backend with products, categories and carts, secured with Spring Security and JWT.",
     tech: ["Java", "Spring Boot", "Spring Security", "PostgreSQL", "Docker"],
     repo: "https://github.com/rajatjc/DreamShops",
-  },
-  {
-    name: "Movie Review",
-    blurb:
-      "Team project: a 3-node Cassandra cluster on Kubernetes serving a 7.8 GB IMDB reviews dataset. Tuning cut query time by 40%.",
-    tech: ["Cassandra", "Kubernetes", "Flask", "Nginx", "Azure"],
-    repo: "https://github.com/batra2304/moviereview-cassandra",
   },
   {
     name: "CareerLinkup",
