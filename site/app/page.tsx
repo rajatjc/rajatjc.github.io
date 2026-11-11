@@ -5,6 +5,7 @@ import ExperienceTabs from "./components/ExperienceTabs";
 import LedgerFlow from "./components/LedgerFlow";
 import LsmPlayground from "./components/LsmPlayground";
 import Nav from "./components/Nav";
+import Screens from "./components/Screens";
 import Shots from "./components/Shots";
 import Terminal from "./components/Terminal";
 import Typer from "./components/Typer";
@@ -76,7 +77,7 @@ function Feature({ p, children }: { p: Project; children: React.ReactNode }) {
 }
 
 export default function Home() {
-  const [lsm, ledger, peeler] = featured;
+  const [utter, lsm, ledger, peeler] = featured;
 
   return (
     <>
@@ -180,7 +181,10 @@ export default function Home() {
           <div className="wrap">
             <p className="eyebrow">02 · projects</p>
             <h2 className="h2 reveal">Things I&apos;ve built to understand them.</h2>
-            <p className="lede reveal">Two projects you can play with right here, plus a game that&apos;s live on its own domain. Each demo is a small model of the real system, running in your browser.</p>
+            <p className="lede reveal">A Mac app I&apos;m building, two projects you can play with right here, and a game that&apos;s live on its own domain. Each browser demo is a small model of the real system.</p>
+            <Feature p={utter}>
+              <Screens p={utter} />
+            </Feature>
             <Feature p={lsm}>
               <LsmPlayground />
             </Feature>

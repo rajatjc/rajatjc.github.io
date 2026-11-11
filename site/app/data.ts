@@ -38,7 +38,7 @@ export const about = [
 
 export const now = [
   { label: "At work", text: "Tenant lifecycle, identity (OIDC) and SRE tooling for Maximo SaaS at IBM." },
-  { label: "Building", text: "lsm-kv, an LSM-tree key-value store in Java 21 with a live web UI." },
+  { label: "Building", text: "Utter, a voice layer for macOS that lives in the MacBook notch." },
   { label: "Shipping", text: "Loonie Ledger, a demo neobank, one service at a time on GitHub." },
 ];
 
@@ -149,9 +149,34 @@ export type Project = {
   metrics?: { value: string; label: string }[];
   // Screenshots in public/, 400 × 760. href opens the game on that item.
   shots?: { src: string; alt: string; caption: string; href: string }[];
+  // Wide app screenshots in public/, 1080 × 280 (a Mac menu bar with the notch).
+  screens?: { src: string; alt: string; caption: string }[];
 };
 
 export const featured: Project[] = [
+  {
+    name: "Utter",
+    blurb:
+      "A voice layer for macOS that lives in the MacBook notch. Hold a key and talk, and polished text appears in whatever app you're typing in. Or hold another key and tell your Mac what to do.",
+    points: [
+      "Speech is transcribed on the Mac by Whisper large-v3-turbo on Apple's MLX, in a local sidecar locked to the app with a per-launch token. No audio leaves the machine.",
+      "Apple's on-device model cleans up each dictation: fillers, false starts, punctuation, and the tone of the app you're in. A guard throws out any output where the model answered the dictation instead of cleaning it.",
+      "A notch \"dynamic island\" in SwiftUI and AppKit: invisible when idle, it opens into a rim-lit liquid orb that moves with your voice. Voice commands run through a Claude tool loop, and shell commands wait for an explicit Run.",
+    ],
+    metrics: [
+      { value: "0.6 s", label: "to transcribe a 7-second dictation, on device" },
+      { value: "3 MB", label: "app download; the speech model installs itself" },
+    ],
+    tech: ["Swift", "SwiftUI", "AppKit", "Whisper", "MLX", "Apple Foundation Models", "Python", "Claude API"],
+    repo: "https://github.com/rajatjc/utter",
+    badge: "New",
+    screens: [
+      { src: "/projects/utter/listening.jpg", alt: "The notch expanded into a black island with a glowing orb and a voice waveform", caption: "Listening: the orb and waveform move with your voice" },
+      { src: "/projects/utter/polishing.jpg", alt: "The notch island showing Polishing with three animated dots", caption: "Whisper transcribes on device, then the text is cleaned up" },
+      { src: "/projects/utter/done.jpg", alt: "The notch island with a green check and the words Inserted 12 words", caption: "Typed straight into the app you were in" },
+      { src: "/projects/utter/confirm.jpg", alt: "The notch island asking Run in Terminal? with a shell command and Run and Cancel buttons", caption: "Voice commands: shell commands wait for your Run" },
+    ],
+  },
   {
     name: "lsm-kv",
     blurb:
