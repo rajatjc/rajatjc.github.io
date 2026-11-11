@@ -1,6 +1,7 @@
 import type { Project } from "../data";
 
 // Wide screenshots of a desktop app, stacked: each one is the top of a Mac screen.
+// A screen with a video plays it muted on a loop, with the still as its poster.
 export default function Screens({ p }: { p: Project }) {
   if (!p.screens?.length) return null;
   return (
@@ -12,8 +13,13 @@ export default function Screens({ p }: { p: Project }) {
       <div className="screens">
         {p.screens.map((s) => (
           <figure key={s.src}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={s.src} alt={s.alt} width={1080} height={280} loading="lazy" />
+            {s.video ? (
+              <video src={s.video} poster={s.src} width={1080} height={280} autoPlay muted loop playsInline
+                preload="metadata" aria-label={s.alt} />
+            ) : (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src={s.src} alt={s.alt} width={1080} height={280} loading="lazy" />
+            )}
             <figcaption>{s.caption}</figcaption>
           </figure>
         ))}

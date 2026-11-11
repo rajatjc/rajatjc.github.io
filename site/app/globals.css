@@ -303,13 +303,13 @@ section { scroll-margin-top: 72px; }
 /* Wide app screenshots: the top of a Mac screen with the notch, stacked */
 .screens { display: grid; gap: 14px; }
 .screens figure { margin: 0; display: grid; gap: 6px; }
-.screens img {
-  width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line-2);
+.screens img, .screens video {
+  display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line-2);
   transition: transform .3s, border-color .3s;
 }
-.screens figure:hover img { transform: translateY(-3px); border-color: var(--accent); }
+.screens figure:hover img, .screens figure:hover video { transform: translateY(-3px); border-color: var(--accent); }
 .screens figcaption { font-family: var(--font-mono); font-size: 12px; color: var(--faint); }
-@media (prefers-reduced-motion: reduce) { .screens img { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .screens img, .screens video { transition: none; } }
 
 /* Ledger flow */
 .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 6px 0 14px; }
