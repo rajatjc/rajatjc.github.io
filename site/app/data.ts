@@ -162,7 +162,7 @@ export const featured: Project[] = [
     points: [
       "Speech is transcribed on the Mac by Whisper large-v3-turbo on Apple's MLX, in a local sidecar locked to the app with a per-launch token. No audio leaves the machine.",
       "Apple's on-device model cleans up each dictation: fillers, false starts, punctuation, and the tone of the app you're in. A guard throws out any output where the model answered the dictation instead of cleaning it.",
-      "A notch \"dynamic island\" in SwiftUI and AppKit: invisible when idle, it opens into an orb of three overlapping rim-lit blobs that swell with your voice and jolt when you start speaking. Voice commands run through a Claude tool loop, and shell commands wait for an explicit Run.",
+      "A notch \"dynamic island\" in SwiftUI and AppKit: invisible when idle, it opens into an orb of five overlapping rim-lit blobs that swell with your voice and jolt when you start speaking. Voice commands run through a Claude tool loop, and shell commands wait for an explicit Run.",
     ],
     metrics: [
       { value: "0.6 s", label: "to transcribe a 7-second dictation, on device" },
@@ -172,7 +172,7 @@ export const featured: Project[] = [
     repo: "https://github.com/rajatjc/utter",
     badge: "New",
     screens: [
-      { src: "/projects/utter/listening.jpg", video: "/projects/utter/dictation.mp4", alt: "A dictation in the notch: three glowing outlined blobs and a waveform move with the voice and jolt when speech starts, then Polishing, then a green check", caption: "A dictation: the orb and waveform move with your voice" },
+      { src: "/projects/utter/listening.jpg", video: "/projects/utter/dictation.mp4", alt: "A dictation in the notch: five glowing outlined blobs and a waveform move with the voice and jolt when speech starts, then Polishing, then a green check", caption: "A dictation: the orb and waveform move with your voice" },
       { src: "/projects/utter/polishing.jpg", alt: "The notch island showing Polishing with three animated dots", caption: "Whisper transcribes on device, then the text is cleaned up" },
       { src: "/projects/utter/done.jpg", alt: "The notch island with a green check and the words Inserted 12 words", caption: "Typed straight into the app you were in" },
       { src: "/projects/utter/confirm.jpg", alt: "The notch island asking Run in Terminal? with a shell command and Run and Cancel buttons", caption: "Voice commands: shell commands wait for your Run" },
