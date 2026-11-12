@@ -1,3 +1,4 @@
+import AppWindow from "./components/AppWindow";
 import CopyEmail from "./components/CopyEmail";
 import Cursor from "./components/Cursor";
 import Effects from "./components/Effects";
@@ -76,8 +77,20 @@ function Feature({ p, children }: { p: Project; children: React.ReactNode }) {
   );
 }
 
+// By name, so adding or reordering projects in data.ts can't put one project's text
+// beside another's demo.
+function project(name: string): Project {
+  const found = featured.find((p) => p.name === name);
+  if (!found) throw new Error(`data.ts has no featured project named "${name}"`);
+  return found;
+}
+
 export default function Home() {
-  const [utter, lsm, ledger, peeler] = featured;
+  const utter = project("Utter");
+  const kaleido = project("Kaleido TV");
+  const lsm = project("lsm-kv");
+  const ledger = project("Loonie Ledger");
+  const peeler = project("Happy Peeler");
 
   return (
     <>
@@ -181,9 +194,12 @@ export default function Home() {
           <div className="wrap">
             <p className="eyebrow">02 · projects</p>
             <h2 className="h2 reveal">Things I&apos;ve built to understand them.</h2>
-            <p className="lede reveal">A Mac app I&apos;m building, two projects you can play with right here, and a game that&apos;s live on its own domain. Each browser demo is a small model of the real system.</p>
+            <p className="lede reveal">Two native Apple apps, two projects you can play with right here, and a game that&apos;s live on its own domain. Each browser demo is a small model of the real system.</p>
             <Feature p={utter}>
               <Screens p={utter} />
+            </Feature>
+            <Feature p={kaleido}>
+              <AppWindow p={kaleido} />
             </Feature>
             <Feature p={lsm}>
               <LsmPlayground />

@@ -165,6 +165,8 @@ export type Project = {
   // Wide app screenshots in public/, 1080 × 280 (a Mac menu bar with the notch).
   // video: an optional muted looping MP4 of the same size, shown instead of src (src is its poster).
   screens?: { src: string; alt: string; caption: string; video?: string }[];
+  // Whole app-window screenshots in public/, landscape, at their own size.
+  windows?: { src: string; alt: string; caption: string; width: number; height: number }[];
 };
 
 export const featured: Project[] = [
@@ -189,6 +191,29 @@ export const featured: Project[] = [
       { src: "/projects/utter/polishing.jpg", alt: "The notch island showing Polishing with three animated dots", caption: "Whisper transcribes on device, then the text is cleaned up" },
       { src: "/projects/utter/done.jpg", alt: "The notch island with a green check and the words Inserted 12 words", caption: "Typed straight into the app you were in" },
       { src: "/projects/utter/confirm.jpg", alt: "The notch island asking Run in Terminal? with a shell command and Run and Cancel buttons", caption: "Voice commands: shell commands wait for your Run" },
+    ],
+  },
+  {
+    name: "Kaleido TV",
+    blurb:
+      "Free live TV for Mac, iPhone and iPad in one native SwiftUI app. Legitimate free channels are sorted into Football, Tennis, Cricket, News, Movies, Kids and more, from a dozen countries or the whole world, and any paid IPTV service you add plays alongside them.",
+    points: [
+      "A background checker loads a real piece of video from every free channel, so streams blocked in your country show as offline and working ones move to the front.",
+      "Playback on Apple's AVFoundation reconnects by itself after 2, 5, then 10 seconds, falls back to backup streams, and keeps trying for up to 3 minutes.",
+      "Filters the public iptv-org list down to official free channels, dropping pay-TV brands, bare-IP and plain-http links and known restreamers. Paid M3U and Xtream logins are kept in the Keychain, with no third-party packages anywhere.",
+    ],
+    tech: ["Swift", "SwiftUI", "AVFoundation", "HLS", "XMLTV", "Keychain"],
+    repo: "https://github.com/rajatjc/kaleido-tv",
+    demo: "https://kaleido-tv.onrender.com",
+    demoLabel: "Website",
+    windows: [
+      {
+        src: "/projects/kaleido-tv/home.jpg",
+        alt: "Kaleido TV on a Mac: category tabs across the top, a large featured banner for a movie channel, and a row of colourful football channel cards marked LIVE",
+        caption: "Home: a rotating featured banner and a row per category",
+        width: 1800,
+        height: 1006,
+      },
     ],
   },
   {
