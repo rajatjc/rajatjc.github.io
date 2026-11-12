@@ -177,13 +177,13 @@ export const featured: Project[] = [
     points: [
       "Speech is transcribed on the Mac by Whisper large-v3-turbo on Apple's MLX, in a local sidecar locked to the app with a per-launch token. No audio leaves the machine.",
       "Apple's on-device model cleans up each dictation: fillers, false starts, punctuation, and the tone of the app you're in. A guard throws out any output where the model answered the dictation instead of cleaning it.",
-      "A notch \"dynamic island\" in SwiftUI and AppKit: invisible when idle, it opens into an orb of five overlapping rim-lit blobs that swell with your voice and jolt when you start speaking. Voice commands run through a Claude tool loop, and shell commands wait for an explicit Run.",
+      "A notch \"dynamic island\" in SwiftUI and AppKit: invisible when idle, it opens into an orb of five overlapping rim-lit blobs that swell with your voice and jolt when you start speaking. Voice commands can act on your Mac, and shell commands wait for an explicit Run.",
     ],
     metrics: [
       { value: "0.6 s", label: "to transcribe a 7-second dictation, on device" },
       { value: "3 MB", label: "app download; the speech model installs itself" },
     ],
-    tech: ["Swift", "SwiftUI", "AppKit", "Whisper", "MLX", "Apple Foundation Models", "Python", "Claude API"],
+    tech: ["Swift", "SwiftUI", "AppKit", "Whisper", "MLX", "Apple Foundation Models", "Python"],
     repo: "https://github.com/rajatjc/utter",
     badge: "New",
     screens: [
