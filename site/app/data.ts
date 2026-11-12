@@ -123,16 +123,29 @@ export const jobs: Job[] = [
     tech: ["Java", "Spring Boot", "Kafka", "SQL", "AngularJS"],
   },
   {
-    company: "Verbose Techlabs",
+    company: "Apisero",
     title: "Software Engineer",
-    dates: "Sep 2020 – Jul 2021",
-    place: "New Delhi, India",
+    dates: "Jun 2021 – Jul 2021",
+    place: "Gurugram, India",
     points: [
       "Built microservices and backend platform features in Java and Scala.",
       "Cut the product-search API's response time from 550 ms to 200 ms.",
       "Hosted a component library on AWS S3 and CloudFront, with authentication through Lambda and Cognito.",
+      "Set up CI/CD pipelines on AWS and Jenkins, and wrote TypeScript APIs used by 12+ existing applications, fully unit tested.",
     ],
-    tech: ["Java", "Scala", "AWS", "Jenkins"],
+    tech: ["Java", "Scala", "TypeScript", "AWS", "Jenkins"],
+  },
+  {
+    company: "Verbose Techlabs",
+    title: "Flutter Developer",
+    dates: "Sep 2020 – Jul 2021",
+    place: "New Delhi, India",
+    points: [
+      "Built and fixed features across a web application's full stack in AngularJS and Python, shipping 5+ features.",
+      "Worked with the CEO on virtual-machine backup and restore, protecting customer data.",
+      "Wrote REST API endpoints in Python on MySQL and CockroachDB, in an Agile team of 10.",
+    ],
+    tech: ["AngularJS", "Python", "MySQL", "CockroachDB", "Linux"],
   },
 ];
 
