@@ -137,15 +137,14 @@ export const jobs: Job[] = [
   },
   {
     company: "Verbose Techlabs",
-    title: "Flutter Developer",
-    dates: "Sep 2020 – Jul 2021",
+    title: "Flutter Development Intern",
+    dates: "Jun 2020 – Aug 2020",
     place: "New Delhi, India",
     points: [
-      "Built and fixed features across a web application's full stack in AngularJS and Python, shipping 5+ features.",
-      "Worked with the CEO on virtual-machine backup and restore, protecting customer data.",
-      "Wrote REST API endpoints in Python on MySQL and CockroachDB, in an Agile team of 10.",
+      "Built features for the company's mobile apps in Flutter with the Mobile App Development team.",
+      "Integrated the Agora API for in-app video calling and conferencing, including the backend work behind it.",
     ],
-    tech: ["AngularJS", "Python", "MySQL", "CockroachDB", "Linux"],
+    tech: ["Flutter", "Dart", "Agora"],
   },
 ];
 
