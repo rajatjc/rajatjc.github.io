@@ -99,18 +99,6 @@ export const jobs: Job[] = [
     tech: ["Java", "Spring Boot", "Python", "Cassandra", "Kafka", "Redis", "Kubernetes", "Argo CD"],
   },
   {
-    company: "Concordia University",
-    title: "Developer",
-    dates: "Sep 2022 – Jan 2024",
-    place: "Montreal, QC",
-    points: [
-      "Led a project to streamline deployments with Java, Angular and Kubernetes, cutting deployment time and developer workload by 44%.",
-      "Built Spring Boot APIs that integrate with 12+ applications, and tuned MongoDB queries to cut data retrieval time by 20%.",
-      "Won the Golden Key Scholarship for automation that saved more than 100 hours of manual work a week.",
-    ],
-    tech: ["Java", "Spring Boot", "Angular", "MongoDB", "Kubernetes"],
-  },
-  {
     company: "Tejas Networks",
     title: "Software Developer",
     dates: "Aug 2021 – Aug 2022",
